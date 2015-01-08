@@ -1,0 +1,60 @@
+---
+title: "oneDimFlow_PlotResult"
+author: "kongdd"
+date: "Thursday, January 08, 2015"
+output:
+  html_document:
+    css: style.css
+    theme: united
+---
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+
+```{r environment set}
+setwd('F:/Users/kongdd/Documents/MATLAB/计算机大作业')
+library(ggplot2)
+library(R.matlab)
+library(plyr)
+library(reshape)
+
+data <- readMat("oneDimFlowPlotData.mat")
+
+x1 <- seq(0,1,0.2)
+x2 <- seq(0,1,0.01)
+# release data in mat File
+eval(parse(text='1+1'))
+Names <- names(data)
+
+for (i in 1:length(data)){
+  # release data from list
+  eval(parse(text=sprintf("%s=data[[%d]]",Names[i],i)))
+  # add x value
+  if (i ==1 ){
+    eval(parse(text=sprintf("%s <- cbind(x1,%s)",Names[i],Names[i])))
+  }else{
+    eval(parse(text=sprintf("%s <- cbind(x2,%s)",Names[i],Names[i])))
+  }
+  # add rownames
+  
+}
+# eval(parse(text=sprintf("colnames(%s)=Row_Names",Names[i])))
+data <- rbind(Het.situ1,Het.situ2,Hom,Hom.forward,Hom.backward)
+Name<-c(rep('Het.situ1',101),rep('Het.situ2',101),rep('Hom',101),rep('Hom.forward',6),rep('Hom.backward',101))
+
+Row_Names<- c('x','0','1','5','10','20','40','100','Tag')
+data <- data.frame(data,Tag=Name)
+colnames(data) <- Row_Names
+
+plot.data <- melt(data, c("x","Tag"))
+colnames(plot.data) <- c("x","Tag","Time","Head")
+```
+
+You can also embed plots, for example:
+
+```{r plot result,fig}
+ggplot(plot.data,aes(x = x, y = Head, colour=Time))+
+  geom_line(size = 1)+facet_wrap(~Tag)
+last_plot()+labs(y=expression(paste("T" [1],"=0.01")))
+last_plot()+expression(paste("T" [1],"=0.01,","T" [2],"=0.002,"))
+```

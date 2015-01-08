@@ -1,0 +1,9 @@
+No.	station name	lat	long
+1	boulder	40.033	105.267
+2	castle	39.383	104.867
+3	green9ne	39.267	104.750
+4	lawson	39.767	105.633
+5	longmont	40.252	105.150
+6	manitou	38.850	104.933
+7	parker	39.533	104.650
+8	woodland	39.100	105.083

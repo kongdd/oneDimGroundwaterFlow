@@ -1,0 +1,33 @@
+library(gstat)
+library(ggplot2)
+library(maptools)
+require(xtable)
+rm(list=ls())
+setwd("F:/Users/kongdd/Documents/MATLAB/finalWork/krigineInterpolation")
+            
+stationInfo_known=read.table('./data/LatitudeLogitude_8Stations_Known.txt',sep="\t",head=T)
+stationInfo_pre  = read.table('./data/LatitudeLogitude_6Stations_ToBeEstimated.txt',sep="\t",head=T)
+Rain_known = read.table('./data/Rain_15year_8Stations_Known.txt',sep="\t",head=T)
+Rain_preReal = read.table('./data/AnnualRain_6Stations_ToBeEstimated.txt',head=T)
+Rain_known <- t(Rain_known[-1])
+colnames(Rain_known)<-paste("year",1:15,sep="")
+stationInfo_known = stationInfo_known[,c(3,4)]
+stationInfo_pre = stationInfo_pre[,c(3,4)]
+Rain_known<- data.frame(stationInfo_known,Rain_known)
+coordinates(stationInfo_pre)<-~long+lat
+coordinates(Rain_known)<-~long+lat
+
+
+
+nYear <- 15
+Result<-list()
+RainPredict<-matrix(0,nYear,6)
+for(i in 1:nYear){
+  varName <- sprintf("year%d",i)
+  evalStr<- sprintf("Result[[%d]] <- idw(%s~1,Rain_known,stationInfo_pre,nmin=8)",i,varName)
+  eval(parse(text=evalStr))
+  RainPredict[i,] <- Result[[i]]$var1.pred
+}
+xtable(RainPredict)
+AnnualRainPredict<-apply(RainPredict,2,mean)
+

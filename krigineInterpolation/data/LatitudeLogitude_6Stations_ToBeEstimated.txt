@@ -1,0 +1,7 @@
+No.	station name	lat	long
+1	byers	39.750	104.133
+2	estes	40.383	105.517
+3	golden	39.700	105.217
+4	green9se	39.100	104.733
+5	lakegeor	38.917	105.483
+6	morrison	39.650	105.200
