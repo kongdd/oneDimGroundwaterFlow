@@ -49,9 +49,9 @@ No. | station name  | latitude  | logitude
 
 The annual rainfall for 6 the stations are available in the Excel file “AnnualRain_6Stations_ToBeEstimated.xls”. This will be used to calculate the estimate error by using different interpolation methods
 
-1)	For each of 6 stations (i.e., byers, estes, golden, green9se, lakegeor, and morrison) where the annual will be estimated, estimate the annual rainfall based on rainfall at 8 stations (i.e., boulder, castle, green9ne, lawson, longmont, manitou, parker and woodland) using the kriging method.
-2)	Estimate the annual rainfall using the inverse-distance-square method and the arithmetic mean method, and compare the error from the kriging method.
-3)	Calculate the error variance for kriging method at each of 6 stations
+1)	For each of 6 stations (i.e., byers, estes, golden, green9se, lakegeor, and morrison) where the annual will be estimated, estimate the annual rainfall based on rainfall at 8 stations (i.e., boulder, castle, green9ne, lawson, longmont, manitou, parker and woodland) using the kriging method.  
+2)	Estimate the annual rainfall using the inverse-distance-square method and the arithmetic mean method, and compare the error from the kriging method.  
+3)	Calculate the error variance for kriging method at each of 6 stations  
 
   Note: use an exponential function to model covariance:  , where a and b are parameters to be determined, and d is the distance between two points.
 
