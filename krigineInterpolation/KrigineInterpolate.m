@@ -42,11 +42,11 @@ for k = 1:Np_pre
     
     a = fitResult.a;
     b = fitResult.b;
-    C0 = mean(Y_zeros) - b;
+    C0 = mean(Y_zeros) - a;
     
     Cov_fit = reshape(feval(fitResult,x),8,8);
     for i=1:length(Cov_fit)
-        Cov_fit(i, i) = C0 + b;
+        Cov_fit(i, i) = C0 + a;
     end
     
     C = [Cov_fit,ones(8,1); ones(1,8),0];
